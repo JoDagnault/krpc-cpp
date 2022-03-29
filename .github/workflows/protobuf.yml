@@ -40,6 +40,7 @@ jobs:
           cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../../../protobuf-install ../..
           nmake
           nmake install
+          cd bin
       
       - name: Zip install files
         #run: 7z a protobuf-artifact ./protobuf-3.19.4/*
