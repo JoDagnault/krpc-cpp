@@ -23,39 +23,21 @@ jobs:
       - name: Unpack protobuf library
         run: 7z x protobuf.zip
         
-      - name: Create directories
+      - name: Compile
         run: |
           mkdir protobuf-install
           cd protobuf-3.19.4
           cd cmake
           mkdir build
           cd build
-             
-      - name: Release configuration
-        run: |
           mkdir release 
           cd release
           cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../../../../protobuf-install ../..
-          cd ..
-        
-      #- name: Visual Studio solution
-      #  run: |
-      #    mkdir solution & cd solution
-      #    cmake -G "Visual Studio 16 2019" -A x64 DCMAKE_INSTALL_PREFIX=../../../../protobuf-install ../..
-      #    cd ..
-          
-      - name: Compile protobuf
-        run: |
-          cd release
           nmake
-          
-      - name: Install protobuf
-        run: nmake install
-          
+          nmake install
+      
       - name: Zip install files
-        run: |
-          cd ../..
-          7z a protobuf-install ./protobuf-install/*   
+        run: 7z a protobuf-install ./protobuf-install/*   
           
       - uses: actions/upload-artifact@v3
         with:
