@@ -1,6 +1,6 @@
 # Test building protobuf in Windows
 
-name: test
+name: test-run
 
 # Controls when the workflow will run
 on:
