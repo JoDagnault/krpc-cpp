@@ -39,7 +39,7 @@ jobs:
       - name: Copy files
         run: |
           Get-Location
-          xcopy /E '.\test\build\release\test-install' '.\'
+          xcopy /E '.\test\build\release\test-install\' '.\test-install\'
           cd test-install
           Get-Location
           dir /A
@@ -47,7 +47,6 @@ jobs:
       #- name: Zip install files
       #  run: 7z a test-artifact test-install\*
       
-      - run: Get-Location
       - uses: actions/upload-artifact@v3
         with:
           name: test-artifact
