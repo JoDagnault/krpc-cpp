@@ -36,7 +36,7 @@ jobs:
           cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=test-install ../..
           nmake
           nmake install
-          Copy-Item 'test-install' -Destination '..\..\..\test-install'
+          xcopy /E '.\test-install' '..\..\..'
           
       
       #- name: Zip install files
