@@ -26,8 +26,7 @@ jobs:
         
       - uses: ilammy/msvc-dev-cmd@v1
       - name: Compile
-        run: |
-          mkdir test-install       
+        run: |       
           cd test
           mkdir build
           cd build
@@ -43,12 +42,12 @@ jobs:
           xcopy /E '.\test\build\release\test-install' '.\'
           cd test-install
           Get-Location
-          dir
+          dir /A
       
       #- name: Zip install files
       #  run: 7z a test-artifact test-install\*
       
-      - run: echo %CD%
+      - run: Get-Location
       - uses: actions/upload-artifact@v3
         with:
           name: test-artifact
