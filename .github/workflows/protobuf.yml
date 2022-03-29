@@ -37,18 +37,13 @@ jobs:
           cd build
           mkdir release 
           cd release
-          cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../../../protobuf-install ../..
+          cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=D:/protobuf-install ../..
           nmake
           nmake install
-          
-      - name: Check folder
-        run: |
-          cd D:\bin\
-          .\hello_world.exe
       
       - name: Zip install files
         #run: 7z a protobuf-artifact ./protobuf-3.19.4/*
-        run: 7z a protobuf-artifact ./protobuf-install/*
+        run: 7z a protobuf-artifact D:\protobuf-install\*
           
       - uses: actions/upload-artifact@v3
         with:
