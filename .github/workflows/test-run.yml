@@ -37,6 +37,9 @@ jobs:
           nmake
           nmake install
           xcopy /E '.\test-install' '..\..\..'
+          echo %CD%
+          cd ..\..\..\test-install
+          dir /A
           
       
       #- name: Zip install files
