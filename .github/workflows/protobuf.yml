@@ -28,11 +28,13 @@ jobs:
           mkdir protobuf-install
           cd protobuf-3.19.4
           cd cmake
-          mkdir build & cd build
+          mkdir build
+          cd build
              
       - name: Release configuration
         run: |
-          mkdir release & cd release
+          mkdir release 
+          cd release
           cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../../../../protobuf-install ../..
           cd ..
         
