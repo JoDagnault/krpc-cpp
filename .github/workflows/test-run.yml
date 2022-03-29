@@ -33,7 +33,7 @@ jobs:
           cd build
           mkdir release 
           cd release
-          cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../../../test-install ../..
+          cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/../../../test-install ../..
           nmake
           nmake install
       
