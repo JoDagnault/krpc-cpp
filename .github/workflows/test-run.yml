@@ -43,11 +43,12 @@ jobs:
           xcopy /E '.\test\build\release\test-install' '.\'
           cd test-install
           Get-Location
+          dir
       
       #- name: Zip install files
       #  run: 7z a test-artifact test-install\*
       
-      - run: cd %CD%
+      - run: echo %CD%
       - uses: actions/upload-artifact@v3
         with:
           name: test-artifact
