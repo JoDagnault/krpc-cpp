@@ -21,12 +21,12 @@ jobs:
         run: Invoke-WebRequest "https://github.com/protocolbuffers/protobuf/releases/download/v3.19.4/protobuf-cpp-3.19.4.zip" -OutFile "protobuf.zip"
         
       - name: Unpack protobuf library
-        run: 7z x protobuf.zip  -oprotobuf
+        run: 7z x protobuf.zip
         
       - name: Create directories
         run: |
           mkdir protobuf-install
-          cd protobuf
+          cd protobuf-3.19.4
           cd cmake
           mkdir build & cd build
              
