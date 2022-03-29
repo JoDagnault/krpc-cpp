@@ -1,6 +1,6 @@
 # Test building protobuf in Windows
 
-name: Protobuf
+name: test
 
 # Controls when the workflow will run
 on:
@@ -17,10 +17,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Get the protobuf source
+      - name: Get the source
         run: Invoke-WebRequest "https://github.com/nullprofile/krpc-cpp/raw/master/test.7z" -OutFile "test.7z"
         
-      - name: Unpack protobuf library
+      - name: Unpack library
         run: 7z x test.7z
         
       - uses: ilammy/msvc-dev-cmd@v1
