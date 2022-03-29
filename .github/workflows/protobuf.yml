@@ -18,7 +18,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Get the protobuf source
-        run: wget "https://github.com/protocolbuffers/protobuf/releases/download/v3.19.4/protobuf-cpp-3.19.4.zip" -outfile "protobuf.zip"
+        run: Invoke-WebRequest "https://github.com/protocolbuffers/protobuf/releases/download/v3.19.4/protobuf-cpp-3.19.4.zip" -OutFile "protobuf.zip"
         
       - name: Unpack KSP libraries
         uses: edgarrc/action-7z@v1
