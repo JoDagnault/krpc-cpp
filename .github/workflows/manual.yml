@@ -1,0 +1,56 @@
+# Test building protobuf in Windows
+
+name: test-run
+
+# Controls when the workflow will run
+on:
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Get the source
+        run: Invoke-WebRequest "https://github.com/nullprofile/krpc-cpp/raw/master/test.7z" -OutFile "test.7z"
+        
+      - name: Unpack library
+        run: 7z x test.7z
+        
+      - uses: ilammy/msvc-dev-cmd@v1
+      - name: Compile
+        run: |
+          mkdir test-install       
+          cd test
+          mkdir build
+          cd build
+          mkdir release 
+          cd release
+          cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=test-install ../..
+          nmake
+          nmake install
+      
+      #- name: Zip install files
+      #  run: 7z a test-artifact test-install\*
+          
+      - uses: actions/upload-artifact@v3
+        with:
+          name: test-artifact
+          path: test-install
+jobs:
+  # This workflow contains a single job called "greet"
+  greet:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Runs a single command using the runners shell
+    - name: Send greeting
+      run: echo "Hello ${{ github.event.inputs.name }}"
