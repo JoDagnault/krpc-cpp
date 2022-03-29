@@ -7,7 +7,7 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
+  
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -18,17 +18,21 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Get the protobuf source
-        run: Invoke-WebRequest "https://github.com/protocolbuffers/protobuf/releases/download/v3.19.4/protobuf-cpp-3.19.4.zip" -OutFile "protobuf.zip"
+        #run: Invoke-WebRequest "https://github.com/protocolbuffers/protobuf/releases/download/v3.19.4/protobuf-cpp-3.19.4.zip" -OutFile "protobuf.zip"
+        run: Invoke-WebRequest "https://github.com/nullprofile/krpc-cpp/raw/master/test.7z" -OutFile "test.7z"
         
       - name: Unpack protobuf library
-        run: 7z x protobuf.zip
+        # run: 7z x protobuf.zip
+        run: 7z x test.7z
+        
+        # cd protobuf-3.19.4
         
       - uses: ilammy/msvc-dev-cmd@v1
       - name: Compile
         run: |
-          mkdir protobuf-install
-          cd protobuf-3.19.4
-          cd cmake
+          mkdir protobuf-install       
+          cd test
+          cd cmake 
           mkdir build
           cd build
           mkdir release 
@@ -38,7 +42,8 @@ jobs:
         # nmake install
       
       - name: Zip install files
-        run: 7z a protobuf-artifact ./protobuf-3.19.4/*
+        #run: 7z a protobuf-artifact ./protobuf-3.19.4/*
+        run: 7z a protobuf-artifact ./protobuf-install/*
           
       - uses: actions/upload-artifact@v3
         with:
