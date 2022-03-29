@@ -40,7 +40,7 @@ jobs:
       - name: Check
         run: |
           cd protobuf-install
-          #dir /a
+          ls
       
       - name: Zip install files
         run: 7z a protobuf-install ./protobuf-install/*   
