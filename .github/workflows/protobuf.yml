@@ -26,18 +26,18 @@ jobs:
         run: 7z x test.7z
         
         # cd protobuf-3.19.4
+        # cd cmake
         
       - uses: ilammy/msvc-dev-cmd@v1
       - name: Compile
         run: |
           mkdir protobuf-install       
-          cd test
-          cd cmake 
+          cd test           
           mkdir build
           cd build
           mkdir release 
           cd release
-          cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../../../../protobuf-install ../..
+          cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../../../protobuf-install ../..
         # nmake
         # nmake install
       
