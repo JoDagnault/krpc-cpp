@@ -36,11 +36,11 @@ jobs:
           cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=test-install ../..
           nmake
           nmake install
-          xcopy /E '.\test-install' '..\..\..'
-          echo %CD%
-          cd ..\..\..\test-install
-          dir /A
           
+      - name: Copy files
+        run: |
+          echo %CD%
+          xcopy /E '.\test\build\release\test-install' '.\'   
       
       #- name: Zip install files
       #  run: 7z a test-artifact test-install\*
