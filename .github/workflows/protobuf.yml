@@ -23,6 +23,7 @@ jobs:
       - name: Unpack protobuf library
         run: 7z x protobuf.zip
         
+      - uses: ilammy/msvc-dev-cmd@v1
       - name: Compile
         run: |
           mkdir protobuf-install
