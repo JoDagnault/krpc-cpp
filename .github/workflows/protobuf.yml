@@ -34,13 +34,13 @@ jobs:
           mkdir release 
           cd release
           cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../../../../protobuf-install ../..
-          nmake
-          nmake install
+      #    nmake
+      #    #nmake install
           
       - name: Check
         run: |
           cd protobuf-install
-          dir /a
+          #dir /a
       
       - name: Zip install files
         run: 7z a protobuf-install ./protobuf-install/*   
