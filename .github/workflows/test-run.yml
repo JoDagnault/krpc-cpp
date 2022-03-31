@@ -30,4 +30,6 @@ jobs:
           name: protobuf-artifact
           
       - name: Check
-        run: dir /A
+        run: |
+          cd krpc-cpp/krpc-cpp
+          dir /A
