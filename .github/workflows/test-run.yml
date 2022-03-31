@@ -28,9 +28,10 @@ jobs:
           # and extract them in respective subdirectories
           # https://github.com/actions/download-artifact#download-all-artifacts
           name: protobuf-artifact
+          path: protobuf
           
       - name: Check
         working-directory: ./
         run: |
           dir
-          cd bin
+          cd protobuf
