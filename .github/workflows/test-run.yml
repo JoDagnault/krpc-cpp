@@ -31,5 +31,4 @@ jobs:
           
       - name: Check
         run: |
-          cd krpc-cpp/krpc-cpp
           dir /A
