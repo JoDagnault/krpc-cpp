@@ -18,37 +18,16 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Get the source
-        run: Invoke-WebRequest "https://github.com/nullprofile/krpc-cpp/raw/master/test.7z" -OutFile "test.7z"
-        
-      - name: Unpack library
-        run: 7z x test.7z
-        
-      - uses: ilammy/msvc-dev-cmd@v1
-      - name: Compile
-        run: |       
-          cd test
-          mkdir build
-          cd build
-          mkdir release 
-          cd release
-          cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=test-install ../..
-          nmake
-          nmake install
-          
-      - name: Copy files
-        run: |
-          Get-Location
-          xcopy /E '.\test\build\release\test-install\' '.\test-install\'
-          cd test-install
-          Get-Location
-          dir /A
-      
-      #- name: Zip install files
-      #  run: 7z a test-artifact test-install\*
-      
-      - uses: actions/upload-artifact@v3
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
         with:
-          name: test-artifact
-          path: test-install/
-   
+          workflow: protobuf.yml
+          workflow_conclusion: success
+          # Optional, uploaded artifact name,
+          # will download all artifacts if not specified
+          # and extract them in respective subdirectories
+          # https://github.com/actions/download-artifact#download-all-artifacts
+          name: protobuf-artifact
+          
+      - name: Check
+        run: dir /A
