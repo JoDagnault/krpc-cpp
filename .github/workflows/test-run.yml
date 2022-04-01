@@ -68,7 +68,6 @@ jobs:
       - name: Copy files
         run: xcopy /E '.\krpc-cpp-0.4.9\build\krpc-install' '.\krpc-cpp-client\'
           
-      - name: Upload artifact
       - uses: actions/upload-artifact@v3
         with:
           name: krpc-cpp-client
