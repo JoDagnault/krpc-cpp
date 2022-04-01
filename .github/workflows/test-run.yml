@@ -43,12 +43,13 @@ jobs:
       - name: Unpack krpc lib
         run: |
           7z x krpc.zip
-          7z x krpc-0.4.9.zip -okrpc
+          7z x krpc-0.4.9.zip client/krpc-cpp-0.4.9.zip
+          7z x client\krpc-cpp-0.4.9.zip
           
       - uses: ilammy/msvc-dev-cmd@v1
       - name: Compile
         run: |     
-          cd krpc
+          cd krpc-cpp-0.4.9
           mkdir build
           cd build
           cmake -G "NMake Makefiles" ^
@@ -65,12 +66,11 @@ jobs:
           nmake install
           
       - name: Copy files
-        run: xcopy /E '.\krpc\build\krpc-install' '.\krpc-cpp-client\'
+        run: xcopy /E '.\krpc-cpp-0.4.9\build\krpc-install' '.\krpc-cpp-client\'
           
+      - name: Upload artifact
       - uses: actions/upload-artifact@v3
         with:
           name: krpc-cpp-client
           path: krpc-cpp-client/
-    
-        
 
