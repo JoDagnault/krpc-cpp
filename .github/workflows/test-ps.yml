@@ -25,5 +25,7 @@ jobs:
         run: |
           chcp 65001 #set code page to utf-8
           echo ("WORKING_DIR=" + $((Get-Item .).FullName)) >> $env:GITHUB_ENV
+          echo ("BRANCH_NAME=" + $env:GITHUB_REF.replace('refs/heads/', '')) >> $env:GITHUB_ENV
           echo "BUILD TYPE: ${env:BUILD_TYPE}"
           echo "WORKING DIR: ${env:WORKING_DIR}"
+          echo "BRANCH_NAME: ${env:BRANCH_NAME}"
