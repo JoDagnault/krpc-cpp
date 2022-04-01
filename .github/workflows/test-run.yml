@@ -18,7 +18,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Download artifact
+      - name: Get compiled protobuf lib
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: protobuf.yml
@@ -30,8 +30,47 @@ jobs:
           name: protobuf-artifact
           path: protobuf
           
-      - name: Check
-        working-directory: ./
+      - name: Get asio
         run: |
-          dir
-          cd protobuf
+          Invoke-WebRequest "https://telkomuniversity.dl.sourceforge.net/project/asio/asio/1.22.1%20%28Stable%29/asio-1.22.1.zip" -OutFile "asio-1.22.1.zip"
+          7z x asio-1.22.1.zip
+          
+      # In future can use our own compiled lib
+      # For now just grab this one
+      - name: Get the krpc lib
+        run: Invoke-WebRequest "https://github.com/BenChung/krpc/releases/download/v0.4.9/krpc.1.zip" -OutFile "krpc.zip"
+        
+      - name: Unpack krpc lib
+        run: |
+          7z x krpc.zip
+          7z x krpc-0.4.9.zip -okrpc
+          
+      - uses: ilammy/msvc-dev-cmd@v1
+      - name: Compile
+        run: |     
+          cd krpc
+          mkdir build
+          cd build
+          cmake -G "NMake Makefiles" ^
+          -DCMAKE_BUILD_TYPE=Release ^
+          -DCMAKE_INSTALL_PREFIX=./krpc-install ^
+          -DASIO_INCLUDE_DIR=../../asio-1.22.1/include/ ^
+          -DProtobuf_INCLUDE_DIR=../../protobuf/include/ ^
+          -DProtobuf_LIBRARY_RELEASE=../../protobufl/lib/libprotobuf.lib ^
+          -DProtobuf_LITE_LIBRARY_RELEASE=../../protobuf/lib/libprotobuf-lite.lib ^
+          -DProtobuf_PROTOC_EXECUTABLE=../../protobuf/bin/protoc.exe ^
+          -DProtobuf_PROTOC_LIBRARY_RELEASE=../../protobuf/lib/libprotoc.lib ^
+          ..
+          nmake
+          nmake install
+          
+      - name: Copy files
+        run: xcopy /E '.\krpc\build\krpc-install' '.\krpc-cpp-client\'
+          
+      - uses: actions/upload-artifact@v3
+        with:
+          name: krpc-cpp-client
+          path: krpc-cpp-client/
+    
+        
+
