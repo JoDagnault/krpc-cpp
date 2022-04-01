@@ -18,21 +18,23 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Check2
+      - name: Check1
         run: |
-          echo ("WORKING_DIR=" + $((Get-Item .).FullName)) >> $env:GITHUB_ENV
-          echo ("BRANCH_NAME=" + $env:GITHUB_REF.replace('refs/heads/', '')) >> $env:GITHUB_ENV
-          echo "WORKING DIR: ${env:WORKING_DIR}"
-          echo "BRANCH_NAME: ${env:BRANCH_NAME}"
+          echo ("CMAKE_ARG1=-DCMAKE_BUILD_TYPE=Release" >> $env:GITHUB_ENV
+          echo ("CMAKE_ARG2=-DCMAKE_INSTALL_PREFIX=krpc-install" >> $env:GITHUB_ENV
+          echo ("CMAKE_ARG3=-DASIO_INCLUDE_DIR=" + $((Get-Item .).FullName)) + "/asio-1.22.1/include" >> $env:GITHUB_ENV
+          echo ("CMAKE_ARG4=-DProtobuf_INCLUDE_DIR=" + $((Get-Item .).FullName)) + "/protobuf/include" >> $env:GITHUB_ENV 
+          echo ("CMAKE_ARG5=-DProtobuf_LIBRARY_RELEASE=" + $((Get-Item .).FullName)) + "/protobufl/lib/libprotobuf.lib" >> $env:GITHUB_ENV 
+          echo ("CMAKE_ARG6=-DProtobuf_LITE_LIBRARY_RELEASE=" + $((Get-Item .).FullName)) + "/protobuf/lib/libprotobuf-lite.lib" >> $env:GITHUB_ENV 
+          echo ("CMAKE_ARG7=-DProtobuf_PROTOC_EXECUTABLE=" + $((Get-Item .).FullName)) + "/protobuf/bin/protoc.exe" >> $env:GITHUB_ENV 
+          echo ("CMAKE_ARG8=-DProtobuf_PROTOC_LIBRARY_RELEASE=" + $((Get-Item .).FullName)) + "/protobuf/lib/libprotoc.lib" >> $env:GITHUB_ENV 
           
       - uses: ilammy/msvc-dev-cmd@v1
-      - name: Check
+      - name: Check2
         env:
           BUILD_TYPE: -DCMAKE_BUILD_TYPE=Release
         run: |
           chcp 65001 #set code page to utf-8
-          echo "BUILD TYPE: ${env:BUILD_TYPE}"
-          echo "WORKING DIR: ${env:WORKING_DIR}"
-          echo "BRANCH_NAME: ${env:BRANCH_NAME}"
+          echo "cmake -G "NMake Makefiles" ${env:CMAKE_ARG1} ${env:CMAKE_ARG2} ${env:CMAKE_ARG3} ${env:CMAKE_ARG4} ${env:CMAKE_ARG5} ${env:CMAKE_ARG6} ${env:CMAKE_ARG7} ${env:CMAKE_ARG8} .."
           
 
