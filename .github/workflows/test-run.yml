@@ -63,7 +63,7 @@ jobs:
           line8: -DProtobuf_PROTOC_LIBRARY_RELEASE=../../protobuf/lib/libprotoc.lib 
         run: |
           echo ("WORKING_DIR=" + $((Get-Item .).FullName)) >> $env:GITHUB_ENV
-          echo "DIR: ${{ env:WORKING_DIR }}"
+          echo "DIR: $env:WORKING_DIR"
           cd krpc-cpp-0.4.9
           mkdir build
           cd build
