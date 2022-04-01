@@ -63,11 +63,10 @@ jobs:
           line8: -DProtobuf_PROTOC_LIBRARY_RELEASE=../../protobuf/lib/libprotoc.lib 
         run: |
           echo ("WORKING_DIR=" + $((Get-Item .).FullName)) >> $env:GITHUB_ENV
+          echo "DIR: ${env:WORKING_DIR}"
           cd krpc-cpp-0.4.9
           mkdir build
           cd build
-          echo "${env:WORKING_DIR}"
-          echo "COMMAND: cmake -G "NMake Makefiles" ${line1} ${line2} ${line3} ${line4} ${line5} ${line6} ${line7} ${line8} .."
           cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=krpc-install -DASIO_INCLUDE_DIR=${env:WORKING_DIR}/asio-1.22.1/include -DProtobuf_INCLUDE_DIR=${env:WORKING_DIR}/protobuf/include -DProtobuf_LIBRARY_RELEASE=${env:WORKING_DIR}/protobuf/lib/libprotobuf.lib -DProtobuf_LITE_LIBRARY_RELEASE=${env:WORKING_DIR}/protobuf/lib/libprotobuf-lite.lib -DProtobuf_PROTOC_EXECUTABLE=${env:WORKING_DIR}/protobuf/bin/protoc.exe -DProtobuf_PROTOC_LIBRARY_RELEASE=${env:WORKING_DIR}/protobuf/lib/libprotoc.lib ..
           nmake
           nmake install       
