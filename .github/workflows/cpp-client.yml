@@ -38,10 +38,8 @@ jobs:
       # In future can use our own compiled lib
       # For now just grab this one
       - name: Get the krpc lib
-        run: Invoke-WebRequest "https://github.com/BenChung/krpc/releases/download/v0.4.9/krpc.1.zip" -OutFile "krpc.zip"
-        
-      - name: Unpack krpc lib
         run: |
+          Invoke-WebRequest "https://github.com/BenChung/krpc/releases/download/v0.4.9/krpc.1.zip" -OutFile "krpc.zip"
           7z x krpc.zip
           7z x krpc-0.4.9.zip client/krpc-cpp-0.4.9.zip
           7z x client\krpc-cpp-0.4.9.zip
