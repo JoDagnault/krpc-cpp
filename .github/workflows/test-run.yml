@@ -51,6 +51,9 @@ jobs:
           7z x krpc-0.4.9.zip client/krpc-cpp-0.4.9.zip
           7z x client\krpc-cpp-0.4.9.zip
           
+      - name: Check
+        run: echo "$((Get-Item .).FullName)"
+          
       - uses: ilammy/msvc-dev-cmd@v1
       - name: Compile
         env:
@@ -68,12 +71,6 @@ jobs:
           cd build
           echo "COMMAND: cmake -G "NMake Makefiles" $line1 $line2 $line3 $line4 $line5 $line6 $line7 $line8 .."
           cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=krpc-install -DASIO_INCLUDE_DIR=D:/a/krpc-cpp/krpc-cpp/asio-1.22.1/include -DProtobuf_INCLUDE_DIR=D:/a/krpc-cpp/krpc-cpp/protobuf/include -DProtobuf_LIBRARY_RELEASE=D:/a/krpc-cpp/krpc-cpp/protobufl/lib/libprotobuf.lib -DProtobuf_LITE_LIBRARY_RELEASE=D:/a/krpc-cpp/krpc-cpp/protobuf/lib/libprotobuf-lite.lib -DProtobuf_PROTOC_EXECUTABLE=D:/a/krpc-cpp/krpc-cpp/protobuf/bin/protoc.exe -DProtobuf_PROTOC_LIBRARY_RELEASE=D:/a/krpc-cpp/krpc-cpp/protobuf/lib/libprotoc.lib ..
-          
-      - uses: ilammy/msvc-dev-cmd@v1
-      - name: nmake
-        run: |
-          cd krpc-cpp-0.4.9
-          cd build
           nmake
           nmake install       
           
