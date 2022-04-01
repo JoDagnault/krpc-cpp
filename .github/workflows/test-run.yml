@@ -46,22 +46,27 @@ jobs:
           7z x krpc-0.4.9.zip client/krpc-cpp-0.4.9.zip
           7z x client\krpc-cpp-0.4.9.zip
           
-      - uses: ilammy/msvc-dev-cmd@v1
-      - name: Compile
+      - name: CMake
         run: |     
           cd krpc-cpp-0.4.9
           mkdir build
           cd build
-          cmake -G "NMake Makefiles" ^
-          -DCMAKE_BUILD_TYPE=Release ^
-          -DCMAKE_INSTALL_PREFIX=./krpc-install ^
-          -DASIO_INCLUDE_DIR=../../asio-1.22.1/include/ ^
-          -DProtobuf_INCLUDE_DIR=../../protobuf/include/ ^
-          -DProtobuf_LIBRARY_RELEASE=../../protobufl/lib/libprotobuf.lib ^
-          -DProtobuf_LITE_LIBRARY_RELEASE=../../protobuf/lib/libprotobuf-lite.lib ^
-          -DProtobuf_PROTOC_EXECUTABLE=../../protobuf/bin/protoc.exe ^
-          -DProtobuf_PROTOC_LIBRARY_RELEASE=../../protobuf/lib/libprotoc.lib ^
+          cmake -G "NMake Makefiles" \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_INSTALL_PREFIX=./krpc-install \
+          -DASIO_INCLUDE_DIR=../../asio-1.22.1/include/ \
+          -DProtobuf_INCLUDE_DIR=../../protobuf/include/ \
+          -DProtobuf_LIBRARY_RELEASE=../../protobufl/lib/libprotobuf.lib \
+          -DProtobuf_LITE_LIBRARY_RELEASE=../../protobuf/lib/libprotobuf-lite.lib \
+          -DProtobuf_PROTOC_EXECUTABLE=../../protobuf/bin/protoc.exe \
+          -DProtobuf_PROTOC_LIBRARY_RELEASE=../../protobuf/lib/libprotoc.lib \
           ..
+          
+      - uses: ilammy/msvc-dev-cmd@v1
+      - name: Compile
+        run: |
+          cd krpc-cpp-0.4.9
+          cd build
           nmake
           nmake install
           
