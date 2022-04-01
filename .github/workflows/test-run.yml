@@ -51,12 +51,12 @@ jobs:
         env:
           line1: -DCMAKE_BUILD_TYPE=Release 
           line2: -DCMAKE_INSTALL_PREFIX=krpc-install
-          line3: -DASIO_INCLUDE_DIR=/../../asio-1.22.1/include/
-          line4: -DProtobuf_INCLUDE_DIR=/../../protobuf/include/ 
-          line5: -DProtobuf_LIBRARY_RELEASE=/../../protobufl/lib/libprotobuf.lib 
-          line6: -DProtobuf_LITE_LIBRARY_RELEASE=/../../protobuf/lib/libprotobuf-lite.lib 
-          line7: -DProtobuf_PROTOC_EXECUTABLE=/../../protobuf/bin/protoc.exe 
-          line8: -DProtobuf_PROTOC_LIBRARY_RELEASE=/../../protobuf/lib/libprotoc.lib 
+          line3: -DASIO_INCLUDE_DIR=D:/a/krpc-cpp/krpc-cpp//asio-1.22.1/include/
+          line4: -DProtobuf_INCLUDE_DIR=D:/a/krpc-cpp/krpc-cpp/protobuf/include/ 
+          line5: -DProtobuf_LIBRARY_RELEASE=D:/a/krpc-cpp/krpc-cpp/protobufl/lib/libprotobuf.lib 
+          line6: -DProtobuf_LITE_LIBRARY_RELEASE=D:/a/krpc-cpp/krpc-cpp/protobuf/lib/libprotobuf-lite.lib 
+          line7: -DProtobuf_PROTOC_EXECUTABLE=D:/a/krpc-cpp/krpc-cpp/protobuf/bin/protoc.exe 
+          line8: -DProtobuf_PROTOC_LIBRARY_RELEASE=D:/a/krpc-cpp/krpc-cpp/protobuf/lib/libprotoc.lib 
         run: |     
           cd krpc-cpp-0.4.9
           mkdir build
