@@ -30,11 +30,6 @@ jobs:
           name: protobuf-artifact
           path: protobuf
           
-      - name: check
-        run: |
-          dir /A
-          cd D:\a\krpc-cpp\krpc-cpp\protobuf\include
-          
       - name: Get asio
         run: |
           Invoke-WebRequest "https://telkomuniversity.dl.sourceforge.net/project/asio/asio/1.22.1%20%28Stable%29/asio-1.22.1.zip" -OutFile "asio-1.22.1.zip"
@@ -53,6 +48,10 @@ jobs:
           
       - name: Check
         run: echo "$((Get-Item .).FullName)"
+        
+      - uses: ilammy/msvc-dev-cmd@v1
+      - name: Check2
+        run: echo "%CD%"
           
       - uses: ilammy/msvc-dev-cmd@v1
       - name: Compile
