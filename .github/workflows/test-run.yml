@@ -32,8 +32,8 @@ jobs:
           
       - name: check
         run: |
-          cd protobuf
           dir /A
+          cd D:\a\krpc-cpp\krpc-cpp\protobuf\include
           
       - name: Get asio
         run: |
