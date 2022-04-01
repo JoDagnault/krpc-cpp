@@ -1,6 +1,6 @@
 # Test building protobuf in Windows
 
-name: test-run
+name: cpp-client
 
 # Controls when the workflow will run
 on:
