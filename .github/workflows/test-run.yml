@@ -51,7 +51,7 @@ jobs:
           BUILD_TYPE: -DCMAKE_BUILD_TYPE=Release
         run: |
           echo "$((Get-Item .).FullName)"
-          echo "BUILD TYPE: $BUILD_TYPE:
+          echo "BUILD TYPE: ${BUILD_TYPE}:
         
           
       - uses: ilammy/msvc-dev-cmd@v1
