@@ -22,12 +22,12 @@ jobs:
         run: |
           echo ("CMAKE_ARG1=-DCMAKE_BUILD_TYPE=Release") >> $env:GITHUB_ENV
           echo ("CMAKE_ARG2=-DCMAKE_INSTALL_PREFIX=krpc-install") >> $env:GITHUB_ENV
-          echo ("CMAKE_ARG3=-DASIO_INCLUDE_DIR=" + $((Get-Item .).FullName)) + "/asio-1.22.1/include") >> $env:GITHUB_ENV
-          echo ("CMAKE_ARG4=-DProtobuf_INCLUDE_DIR=" + $((Get-Item .).FullName)) + "/protobuf/include") >> $env:GITHUB_ENV 
-          echo ("CMAKE_ARG5=-DProtobuf_LIBRARY_RELEASE=" + $((Get-Item .).FullName)) + "/protobufl/lib/libprotobuf.lib") >> $env:GITHUB_ENV 
-          echo ("CMAKE_ARG6=-DProtobuf_LITE_LIBRARY_RELEASE=" + $((Get-Item .).FullName)) + "/protobuf/lib/libprotobuf-lite.lib") >> $env:GITHUB_ENV 
-          echo ("CMAKE_ARG7=-DProtobuf_PROTOC_EXECUTABLE=" + $((Get-Item .).FullName)) + "/protobuf/bin/protoc.exe") >> $env:GITHUB_ENV 
-          echo ("CMAKE_ARG8=-DProtobuf_PROTOC_LIBRARY_RELEASE=" + $((Get-Item .).FullName)) + "/protobuf/lib/libprotoc.lib") >> $env:GITHUB_ENV 
+          echo ("CMAKE_ARG3=-DASIO_INCLUDE_DIR=" + $((Get-Item .).FullName) + "/asio-1.22.1/include") >> $env:GITHUB_ENV
+          echo ("CMAKE_ARG4=-DProtobuf_INCLUDE_DIR=" + $((Get-Item .).FullName) + "/protobuf/include") >> $env:GITHUB_ENV 
+          echo ("CMAKE_ARG5=-DProtobuf_LIBRARY_RELEASE=" + $((Get-Item .).FullName) + "/protobufl/lib/libprotobuf.lib") >> $env:GITHUB_ENV 
+          echo ("CMAKE_ARG6=-DProtobuf_LITE_LIBRARY_RELEASE=" + $((Get-Item .).FullName) + "/protobuf/lib/libprotobuf-lite.lib") >> $env:GITHUB_ENV 
+          echo ("CMAKE_ARG7=-DProtobuf_PROTOC_EXECUTABLE=" + $((Get-Item .).FullName) + "/protobuf/bin/protoc.exe") >> $env:GITHUB_ENV 
+          echo ("CMAKE_ARG8=-DProtobuf_PROTOC_LIBRARY_RELEASE=" + $((Get-Item .).FullName) + "/protobuf/lib/libprotoc.lib") >> $env:GITHUB_ENV 
           
       - uses: ilammy/msvc-dev-cmd@v1
       - name: Check2
