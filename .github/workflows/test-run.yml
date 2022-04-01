@@ -47,7 +47,11 @@ jobs:
           7z x client\krpc-cpp-0.4.9.zip
           
       - name: Check
-        run: echo "$((Get-Item .).FullName)"
+        env:
+          BUILD_TYPE: -DCMAKE_BUILD_TYPE=Release
+        run: |
+          echo "$((Get-Item .).FullName)"
+          echo "BUILD TYPE: $BUILD_TYPE:
         
           
       - uses: ilammy/msvc-dev-cmd@v1
