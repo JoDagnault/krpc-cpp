@@ -18,19 +18,21 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Check2
+        run: |
+          echo ("WORKING_DIR=" + $((Get-Item .).FullName)) >> $env:GITHUB_ENV
+          echo ("BRANCH_NAME=" + $env:GITHUB_REF.replace('refs/heads/', '')) >> $env:GITHUB_ENV
+          echo "WORKING DIR: ${env:WORKING_DIR}"
+          echo "BRANCH_NAME: ${env:BRANCH_NAME}"
+          
       - uses: ilammy/msvc-dev-cmd@v1
       - name: Check
         env:
           BUILD_TYPE: -DCMAKE_BUILD_TYPE=Release
         run: |
           chcp 65001 #set code page to utf-8
-          echo ("WORKING_DIR=" + $((Get-Item .).FullName)) >> $env:GITHUB_ENV
-          echo ("BRANCH_NAME=" + $env:GITHUB_REF.replace('refs/heads/', '')) >> $env:GITHUB_ENV
           echo "BUILD TYPE: ${env:BUILD_TYPE}"
           echo "WORKING DIR: ${env:WORKING_DIR}"
           echo "BRANCH_NAME: ${env:BRANCH_NAME}"
           
-      - name: Check2
-        run: |
-          echo "WORKING DIR: ${env:WORKING_DIR}"
-          echo "BRANCH_NAME: ${env:BRANCH_NAME}"
+
