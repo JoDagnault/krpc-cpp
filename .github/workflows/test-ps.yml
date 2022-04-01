@@ -23,6 +23,7 @@ jobs:
         env:
           BUILD_TYPE: -DCMAKE_BUILD_TYPE=Release
         run: |
+          chcp 65001 #set code page to utf-8
           echo ("WORKING_DIR=" + $((Get-Item .).FullName)) >> $env:GITHUB_ENV
           echo "BUILD TYPE: ${env:BUILD_TYPE}"
           echo "WORKING DIR: ${env:WORKING_DIR}"
