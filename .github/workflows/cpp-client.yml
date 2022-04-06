@@ -35,12 +35,20 @@ jobs:
           Invoke-WebRequest "https://telkomuniversity.dl.sourceforge.net/project/asio/asio/1.22.1%20%28Stable%29/asio-1.22.1.zip" -OutFile "asio-1.22.1.zip"
           7z x asio-1.22.1.zip
           
-      # In future can use our own compiled lib
-      # For now just grab this one
       - name: Get the krpc lib
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: main.yml
+          workflow_conclusion: success
+          # Optional, uploaded artifact name,
+          # will download all artifacts if not specified
+          # and extract them in respective subdirectories
+          # https://github.com/actions/download-artifact#download-all-artifacts
+          name: krpc
+          repo: nullprofile/krpc
+          
+      - name: Unpack krpc lib
         run: |
-          Invoke-WebRequest "https://github.com/BenChung/krpc/releases/download/v0.4.9/krpc.1.zip" -OutFile "krpc.zip"
-          7z x krpc.zip
           7z x krpc-0.4.9.zip client/krpc-cpp-0.4.9.zip
           7z x client\krpc-cpp-0.4.9.zip
           
