@@ -32,9 +32,9 @@ jobs:
           cd build
           mkdir release 
           cd release
-          cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=protobuf-install ../..
-          nmake
-          nmake install
+          cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=protobuf-install ../..
+          cmake --build . --config Release
+          cmake --build . --target INSTALL --config Release
       
       - name: Copy files
         run: xcopy /E '.\protobuf-3.19.4\cmake\build\release\protobuf-install\' '.\protobuf-install\'
