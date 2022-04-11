@@ -23,6 +23,11 @@ jobs:
       - name: Unpack protobuf library
         run: 7z x protobuf.zip
         
+      - name: Set environment variables
+        run: |
+          echo ("SRC_INSTALL=$((Get-Item .).FullName) + "\protobuf-3.19.4\cmake\build\release\protobuf-install\") >> $env:GITHUB_ENV
+          echo ("DEST_INSTALL=$((Get-Item .).FullName) + "\protobuf-install\") >> $env:GITHUB_ENV
+        
       - uses: ilammy/msvc-dev-cmd@v1
       - name: Compile
         run: |     
@@ -35,11 +40,9 @@ jobs:
           cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=protobuf-install ../..
           cmake --build . --config Release
           cmake --build . --target INSTALL --config Release      
-          cd ../../../..
-          xcopy /E '.\protobuf-3.19.4\cmake\build\release\protobuf-install\' '.\protobuf-install\'
       
-      #- name: Copy files
-        #run: xcopy /E '.\protobuf-3.19.4\cmake\build\release\protobuf-install\' '.\protobuf-install\'
+      - name: Copy files
+        run: xcopy /E ${env:SRC_INSTALL} ${env:DEST_INSTALL}
           
       - uses: actions/upload-artifact@v3
         with:
