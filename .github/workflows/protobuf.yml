@@ -34,10 +34,12 @@ jobs:
           cd release
           cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=protobuf-install ../..
           cmake --build . --config Release
-          cmake --build . --target INSTALL --config Release
+          cmake --build . --target INSTALL --config Release      
+          cd ../../../..
+          xcopy /E '.\protobuf-3.19.4\cmake\build\release\protobuf-install\' '.\protobuf-install\'
       
-      - name: Copy files
-        run: xcopy /E '.\protobuf-3.19.4\cmake\build\release\protobuf-install\' '.\protobuf-install\'
+      #- name: Copy files
+        #run: xcopy /E '.\protobuf-3.19.4\cmake\build\release\protobuf-install\' '.\protobuf-install\'
           
       - uses: actions/upload-artifact@v3
         with:
