@@ -25,8 +25,8 @@ jobs:
         
       - name: Set environment variables
         run: |
-          echo ("SRC_INSTALL=$((Get-Item .).FullName) + "\protobuf-3.19.4\cmake\build\release\protobuf-install\") >> $env:GITHUB_ENV
-          echo ("DEST_INSTALL=$((Get-Item .).FullName) + "\protobuf-install\") >> $env:GITHUB_ENV
+          echo ("SRC_INSTALL=" + $((Get-Item .).FullName) + "\protobuf-3.19.4\cmake\build\release\protobuf-install\") >> $env:GITHUB_ENV
+          echo ("DEST_INSTALL=" + $((Get-Item .).FullName) + "\protobuf-install\") >> $env:GITHUB_ENV
         
       - uses: ilammy/msvc-dev-cmd@v1
       - name: Compile
