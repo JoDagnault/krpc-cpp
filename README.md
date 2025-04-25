@@ -15,16 +15,16 @@ This repository is a fork of a collection of build scripts originally from [krpc
   Uses the “Visual Studio 17 2022” generator (`-G "Visual Studio 17 2022" -A x64 -T v142`).
   
 - **Added support for newer CMake versions**
-  Adds "-DCMAKE_POLICY_VERSION_MINIMUM=3.10"
+  Adds `"-DCMAKE_POLICY_VERSION_MINIMUM=3.10"`
   
 ### Usage
 
 1 - Open PowerShell in project root
 
-2 - Run .\protobuf.ps1
+2 - Run `.\protobuf.ps1`
 
-3 - Run .\krpc-cpp.ps1
+3 - Run `.\krpc-cpp.ps1`
 
-4 - Run .\krpc-demo.ps1
+4 - Run `.\krpc-demo.ps1`
 
-5 - Your demo executable will be in build\Release\krpc-demo.exe.
+5 - Your demo executable will be in `build\Release\krpc-demo.exe`
