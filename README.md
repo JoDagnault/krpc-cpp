@@ -19,12 +19,12 @@ This repository is a fork of a collection of build scripts originally from [krpc
   
 ### Usage
 
-1 - Open PowerShell in project root
+1. Open PowerShell in project root
 
-2 - Run `.\protobuf.ps1`
+2. Run `.\protobuf.ps1`
 
-3 - Run `.\krpc-cpp.ps1`
+3. Run `.\krpc-cpp.ps1`
 
-4 - Run `.\krpc-demo.ps1`
+4. Run `.\krpc-demo.ps1`
 
-5 - Your demo executable will be in `build\Release\krpc-demo.exe`
+5. Your demo executable will be in `build\Release\krpc-demo.exe`
