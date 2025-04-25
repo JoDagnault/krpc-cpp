@@ -23,27 +23,27 @@ add_executable(
 target_include_directories( ${PROJECT_NAME}
     PRIVATE
         "include/"
-		"dependencies/asio-1.22.1/include/"
-		"dependencies/protobuf/include/"
-		"dependencies/krpc-cpp/include/"
+		"third_party/asio/include/"
+		"third_party/protobuf/include/"
+		"third_party/krpc-cpp/include/"
 )
 
 # Add protobuf
 add_library(protobuf STATIC IMPORTED)
-set(PROTOBUF_FILE_PATH "${PROJECT_SOURCE_DIR}/dependencies/protobuf/lib/libprotobuf.lib")
+set(PROTOBUF_FILE_PATH "${PROJECT_SOURCE_DIR}/third_party/protobuf/lib/libprotobuf.lib")
 set_target_properties(protobuf PROPERTIES IMPORTED_LOCATION ${PROTOBUF_FILE_PATH})
 
 add_library(protobuf-lite STATIC IMPORTED)
-set(PROTOBUF_LITE_FILE_PATH "${PROJECT_SOURCE_DIR}/dependencies/protobuf/lib/libprotobuf-lite.lib")
+set(PROTOBUF_LITE_FILE_PATH "${PROJECT_SOURCE_DIR}/third_party/protobuf/lib/libprotobuf-lite.lib")
 set_target_properties(protobuf-lite PROPERTIES IMPORTED_LOCATION ${PROTOBUF_LITE_FILE_PATH})
 
 add_library(protoc STATIC IMPORTED)
-set(PROTOC_FILE_PATH "${PROJECT_SOURCE_DIR}/dependencies/protobuf/lib/libprotoc.lib")
+set(PROTOC_FILE_PATH "${PROJECT_SOURCE_DIR}/third_party/protobuf/lib/libprotoc.lib")
 set_target_properties(protoc PROPERTIES IMPORTED_LOCATION ${PROTOC_FILE_PATH})
 
 # Add krpc
 add_library(krpc STATIC IMPORTED)
-set(KRPC_FILE_PATH "${PROJECT_SOURCE_DIR}/dependencies/krpc-cpp/lib/krpc.lib")
+set(KRPC_FILE_PATH "${PROJECT_SOURCE_DIR}/third_party/krpc-cpp/lib/krpc.lib")
 set_target_properties(krpc PROPERTIES IMPORTED_LOCATION ${KRPC_FILE_PATH})
 
 
