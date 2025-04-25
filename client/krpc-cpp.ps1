@@ -25,7 +25,7 @@ cmake --build . --target INSTALL --config Release
 
 cd ../..
 
-xcopy /E /Y'.\krpc-cpp-0.5.4\build\krpc-install\' '.\third_party\krpc-cpp\'
+xcopy /E /Y '.\krpc-cpp-0.5.4\build\krpc-install\' '.\third_party\krpc-cpp\'
 xcopy /E /Y '.\krpc-cpp-0.5.4\build\protobuf\src\' '.\src\'
 
 del 'asio-1.30.2.zip'
