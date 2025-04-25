@@ -14,7 +14,7 @@ This repository is a fork of a collection of build scripts originally from [krpc
 - **Switched to Visual Studio 2022 toolchain**  
   Uses the “Visual Studio 17 2022” generator (`-G "Visual Studio 17 2022" -A x64 -T v142`).
   
-- **Added support for newer CMake versions**
+- **Added support for newer CMake versions** 
   Adds `"-DCMAKE_POLICY_VERSION_MINIMUM=3.10"`
   
 ### Usage
